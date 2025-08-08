@@ -62,7 +62,7 @@ int main()
 			printf("Input an integer that you want to add to the linked list: ");
 			scanf("%d", &i);
 			j = insertSortedLL(&ll, i);
-			printf("The resulting linked list is: ");
+			printf("The resulting linked list is: %d\n", j);
 			printList(&ll);
 			break;
 		case 2:
@@ -91,6 +91,41 @@ int main()
 int insertSortedLL(LinkedList *ll, int item)
 {
 	/* add your code here */
+	if (ll == NULL)
+		return -1;
+	ListNode *cur = ll->head;
+	int index;
+	ListNode *prev;
+
+
+	if (cur == NULL){
+		insertNode(ll, 0, item);
+		return 0;
+	}
+
+	if (item == cur->item) return -1;
+	if (item < cur->item){
+		insertNode(ll, 0, item);
+		return 0;
+	}
+	
+	prev = cur;
+	cur = cur->next;
+	index = 1;
+	while (cur != NULL){
+		if (item == cur->item) return -1;
+		if (item < cur->item){
+			insertNode(ll, index, item);
+			return index;
+		}
+		prev = cur;
+		cur = cur->next;
+		index++;
+	}
+
+	insertNode(ll, index, item);
+	return index;
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
