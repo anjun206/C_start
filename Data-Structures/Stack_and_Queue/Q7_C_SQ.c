@@ -116,16 +116,16 @@ int balanced(char *expression)
 
 	char *p = expression;
 	while (*p != '\0') {
-    char ch = *p;
-	if (ch == '(' || ch == '{' || ch =='[') {push(&st, ch);
-	} else {
-		if (!isEmptyStack(&st)) {
-			if (ch == ')' && pop(&st) != '(') return 1;
-			else if (ch == '}' && pop(&st) != '{') return 1;
-			else if (ch == ']' && pop(&st) != '[') return 1;
-		} else {return 1;}
-	}
-    p++;
+		char ch = *p;
+		if (ch == '(' || ch == '{' || ch =='[') {push(&st, ch);
+		} else {
+			if (!isEmptyStack(&st)) {
+				if (ch == ')' && pop(&st) != '(') return 1;
+				else if (ch == '}' && pop(&st) != '{') return 1;
+				else if (ch == ']' && pop(&st) != '[') return 1;
+			} else {return 1;}
+		}
+		p++;
 	}
 	if (!isEmptyStack(&st)) return 1;
 	return 0;
